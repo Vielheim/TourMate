@@ -11,7 +11,8 @@ import SwiftUI
 struct TourMateApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+//            ContentView()
+            LaunchView()
         }
     }
 }

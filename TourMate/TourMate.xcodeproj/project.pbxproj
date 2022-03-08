@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		000B98A727D7A6DB00E9EBFF /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000B98A627D7A6DB00E9EBFF /* LaunchView.swift */; };
 		B99D964927D73503009B66AE /* TourMateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99D964827D73503009B66AE /* TourMateApp.swift */; };
 		B99D964B27D73503009B66AE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99D964A27D73503009B66AE /* ContentView.swift */; };
 		B99D964D27D73507009B66AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B99D964C27D73507009B66AE /* Assets.xcassets */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		000B98A627D7A6DB00E9EBFF /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		B99D964527D73503009B66AE /* TourMate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TourMate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B99D964827D73503009B66AE /* TourMateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourMateApp.swift; sourceTree = "<group>"; };
 		B99D964A27D73503009B66AE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -71,6 +73,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		000B98A827D7A70000E9EBFF /* Launch */ = {
+			isa = PBXGroup;
+			children = (
+				000B98A627D7A6DB00E9EBFF /* LaunchView.swift */,
+			);
+			path = Launch;
+			sourceTree = "<group>";
+		};
 		B99D963C27D73503009B66AE = {
 			isa = PBXGroup;
 			children = (
@@ -98,6 +108,7 @@
 				B99D964A27D73503009B66AE /* ContentView.swift */,
 				B99D964C27D73507009B66AE /* Assets.xcassets */,
 				B99D964E27D73507009B66AE /* Preview Content */,
+				000B98A827D7A70000E9EBFF /* Launch */,
 			);
 			path = TourMate;
 			sourceTree = "<group>";
@@ -279,6 +290,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B99D964B27D73503009B66AE /* ContentView.swift in Sources */,
+				000B98A727D7A6DB00E9EBFF /* LaunchView.swift in Sources */,
 				B99D964927D73503009B66AE /* TourMateApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
