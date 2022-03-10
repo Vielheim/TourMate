@@ -9,10 +9,13 @@ import SwiftUI
 
 @main
 struct TourMateApp: App {
+    @StateObject private var model = MockModel()
+
     var body: some Scene {
         WindowGroup {
-//            ContentView()
             LaunchView()
+//            ContentView()
+//                .environmentObject(model)
         }
     }
 }
