@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		000B98A727D7A6DB00E9EBFF /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000B98A627D7A6DB00E9EBFF /* LaunchView.swift */; };
+		0044458427D991C5000ED3AE /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0044458327D991C5000ED3AE /* LogInView.swift */; };
+		0044458627D991CE000ED3AE /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0044458527D991CE000ED3AE /* RegisterView.swift */; };
+		0044458827D997F0000ED3AE /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0044458727D997EF000ED3AE /* TitleView.swift */; };
+		0044458A27D99ED2000ED3AE /* InputSecureField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0044458927D99ED2000ED3AE /* InputSecureField.swift */; };
+		0044458D27D9A514000ED3AE /* InputTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0044458C27D9A514000ED3AE /* InputTextField.swift */; };
 		95CB3F7127D8E79C0086E9E3 /* TripCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CB3F6727D8E79A0086E9E3 /* TripCardView.swift */; };
 		95CB3F7227D8E79C0086E9E3 /* MockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CB3F6827D8E79A0086E9E3 /* MockModel.swift */; };
 		95CB3F7327D8E79C0086E9E3 /* ItineraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CB3F6927D8E79A0086E9E3 /* ItineraryView.swift */; };
@@ -46,6 +51,11 @@
 
 /* Begin PBXFileReference section */
 		000B98A627D7A6DB00E9EBFF /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
+		0044458327D991C5000ED3AE /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
+		0044458527D991CE000ED3AE /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		0044458727D997EF000ED3AE /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
+		0044458927D99ED2000ED3AE /* InputSecureField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputSecureField.swift; sourceTree = "<group>"; };
+		0044458C27D9A514000ED3AE /* InputTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextField.swift; sourceTree = "<group>"; };
 		95CB3F6727D8E79A0086E9E3 /* TripCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripCardView.swift; sourceTree = "<group>"; };
 		95CB3F6827D8E79A0086E9E3 /* MockModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockModel.swift; sourceTree = "<group>"; };
 		95CB3F6927D8E79A0086E9E3 /* ItineraryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItineraryView.swift; sourceTree = "<group>"; };
@@ -96,9 +106,22 @@
 		000B98A827D7A70000E9EBFF /* Launch */ = {
 			isa = PBXGroup;
 			children = (
+				0044458B27D9A504000ED3AE /* TextViews */,
 				000B98A627D7A6DB00E9EBFF /* LaunchView.swift */,
+				0044458327D991C5000ED3AE /* LogInView.swift */,
+				0044458527D991CE000ED3AE /* RegisterView.swift */,
+				0044458727D997EF000ED3AE /* TitleView.swift */,
 			);
 			path = Launch;
+			sourceTree = "<group>";
+		};
+		0044458B27D9A504000ED3AE /* TextViews */ = {
+			isa = PBXGroup;
+			children = (
+				0044458C27D9A514000ED3AE /* InputTextField.swift */,
+				0044458927D99ED2000ED3AE /* InputSecureField.swift */,
+			);
+			path = TextViews;
 			sourceTree = "<group>";
 		};
 		B99D963C27D73503009B66AE = {
@@ -326,11 +349,16 @@
 				95CB3F7A27D8E79C0086E9E3 /* TripView.swift in Sources */,
 				95CB3F7427D8E79C0086E9E3 /* PlanHeaderView.swift in Sources */,
 				B99D964927D73503009B66AE /* TourMateApp.swift in Sources */,
+				0044458827D997F0000ED3AE /* TitleView.swift in Sources */,
 				95CB3F7727D8E79C0086E9E3 /* PlansListView.swift in Sources */,
+				0044458A27D99ED2000ED3AE /* InputSecureField.swift in Sources */,
+				0044458427D991C5000ED3AE /* LogInView.swift in Sources */,
+				0044458627D991CE000ED3AE /* RegisterView.swift in Sources */,
 				95CB3F7327D8E79C0086E9E3 /* ItineraryView.swift in Sources */,
 				95CB3F7627D8E79C0086E9E3 /* PlanCardView.swift in Sources */,
 				95CB3F7527D8E79C0086E9E3 /* PlanView.swift in Sources */,
 				95CB3F7927D8E79C0086E9E3 /* TripsView.swift in Sources */,
+				0044458D27D9A514000ED3AE /* InputTextField.swift in Sources */,
 				95CB3F7127D8E79C0086E9E3 /* TripCardView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
