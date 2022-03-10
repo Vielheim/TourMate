@@ -10,7 +10,7 @@ import SwiftUI
 struct RegisterView: View {
     let authenticationController = AuthenticationController()
 
-    @State var username = ""
+    @State var email = ""
     @State var displayName = ""
     @State var password = ""
     @State var confirmPassword = ""
@@ -19,7 +19,7 @@ struct RegisterView: View {
     @State var warningMessage = ""
 
     var registerButtonDisabled: Bool {
-        username.isEmpty || password.isEmpty || confirmPassword.isEmpty
+        email.isEmpty || password.isEmpty || confirmPassword.isEmpty
     }
 
     var registerButtonColor: Color {
@@ -41,7 +41,7 @@ struct RegisterView: View {
 
                 VStack(alignment: .center, spacing: geometry.size.height / 80.0) {
 
-                    InputTextField(title: "Username *", textField: $username)
+                    InputTextField(title: "Email *", textField: $email)
 
                     InputTextField(title: "Display Name", textField: $displayName)
 
@@ -90,7 +90,7 @@ struct RegisterView: View {
         self.showWarning = false
         self.pageIsDisabled = true
 
-        let inputUsername = username
+        let inputEmail = email
         let inputDisplayName = displayName
         let inputPassword = password
         let inputConfirmPassword = confirmPassword
@@ -102,7 +102,7 @@ struct RegisterView: View {
             return
         }
 
-        authenticationController.register(username: inputUsername,
+        authenticationController.register(email: inputEmail,
                                           password: inputPassword,
                                           displayName: inputDisplayName)
 

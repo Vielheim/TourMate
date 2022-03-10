@@ -10,12 +10,12 @@ import SwiftUI
 struct LogInView: View {
     let authenticationController = AuthenticationController()
 
-    @State var username = ""
+    @State var email = ""
     @State var password = ""
     @State var pageIsDisabled = false
 
     var logInButtonDisabled: Bool {
-        username.isEmpty || password.isEmpty
+        email.isEmpty || password.isEmpty
     }
 
     var logInButtonColor: Color {
@@ -37,7 +37,7 @@ struct LogInView: View {
 
                 VStack(alignment: .center, spacing: geometry.size.height / 100.0) {
 
-                    InputTextField(title: "Username", textField: $username)
+                    InputTextField(title: "Email", textField: $email)
 
                     InputSecureField(title: "Password", textField: $password)
 
@@ -73,10 +73,10 @@ struct LogInView: View {
         }
 
         self.pageIsDisabled = true
-        let inputUsername = username
+        let inputEmail = email
         let inputPassword = password
 
-        authenticationController.logIn(username: inputUsername, password: inputPassword)
+        authenticationController.logIn(email: inputEmail, password: inputPassword)
 
         self.pageIsDisabled = false
     }

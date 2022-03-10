@@ -24,6 +24,6 @@ struct InputTextField: View {
 
 struct InputTextField_Previews: PreviewProvider {
     static var previews: some View {
-        InputTextField(title: "Username", textField: LogInView().$username)
+        InputTextField(title: "Username", textField: LogInView().$email)
     }
 }

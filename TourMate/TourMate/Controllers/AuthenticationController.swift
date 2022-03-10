@@ -8,9 +8,9 @@
 import Foundation
 
 struct AuthenticationController {
-    func logIn(username: String, password: String) {
+    func logIn(email: String, password: String) {
     }
 
-    func register(username: String, password: String, displayName: String) {
+    func register(email: String, password: String, displayName: String) {
     }
 }
