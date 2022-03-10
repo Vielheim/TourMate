@@ -19,7 +19,7 @@ struct RegisterView: View {
     @State var warningMessage = ""
 
     var registerButtonDisabled: Bool {
-        email.isEmpty || password.isEmpty || confirmPassword.isEmpty
+        email.isEmpty || password.isEmpty || confirmPassword.isEmpty || pageIsDisabled
     }
 
     var registerButtonColor: Color {
@@ -28,6 +28,13 @@ struct RegisterView: View {
         } else {
             return .blue
         }
+    }
+
+    var opacity: Double {
+        if pageIsDisabled {
+            return 0.5
+        }
+        return 1.0
     }
 
     var body: some View {
@@ -69,6 +76,8 @@ struct RegisterView: View {
                     .disabled(registerButtonDisabled)
                 }
                 .frame(maxWidth: geometry.size.width / 2.0)
+                .disabled(pageIsDisabled)
+                .opacity(opacity)
 
                 if pageIsDisabled {
                     ProgressView("Registering...")
@@ -82,6 +91,9 @@ struct RegisterView: View {
     }
 
     private func onRegisterButtonPressed() {
+        // Removes focus on Textfields and closes keyboard
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+
         guard self.pageIsDisabled == false else {
             return
         }

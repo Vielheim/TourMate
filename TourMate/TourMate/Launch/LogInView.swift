@@ -15,7 +15,7 @@ struct LogInView: View {
     @State var pageIsDisabled = false
 
     var logInButtonDisabled: Bool {
-        email.isEmpty || password.isEmpty
+        email.isEmpty || password.isEmpty || pageIsDisabled
     }
 
     var logInButtonColor: Color {
@@ -24,6 +24,13 @@ struct LogInView: View {
         } else {
             return .blue
         }
+    }
+
+    var opacity: Double {
+        if pageIsDisabled {
+            return 0.5
+        }
+        return 1.0
     }
 
     var body: some View {
@@ -55,6 +62,8 @@ struct LogInView: View {
                     .disabled(logInButtonDisabled)
                 }
                 .frame(maxWidth: geometry.size.width / 2.0)
+                .disabled(pageIsDisabled)
+                .opacity(opacity)
 
                 if pageIsDisabled {
                     ProgressView("Logging In...")
@@ -68,6 +77,9 @@ struct LogInView: View {
     }
 
     private func onLogInButtonPressed() {
+        // Removes focus on Textfields and closes keyboard
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+
         guard self.pageIsDisabled == false else {
             return
         }
