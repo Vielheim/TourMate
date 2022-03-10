@@ -56,12 +56,6 @@ struct RegisterView: View {
 
                     InputSecureField(title: "Confirm Password *", textField: $confirmPassword)
 
-                    if showWarning {
-                        Text(warningMessage)
-                            .foregroundColor(.red)
-                            .padding()
-                    }
-
                     Button(action: onRegisterButtonPressed) {
                         Text("Register")
                         .font(.title2)
@@ -74,10 +68,17 @@ struct RegisterView: View {
                     .shadow(color: .gray, radius: 5.0, x: 3.0, y: 4.0)
                     .padding()
                     .disabled(registerButtonDisabled)
+
                 }
                 .frame(maxWidth: geometry.size.width / 2.0)
                 .disabled(pageIsDisabled)
                 .opacity(opacity)
+
+                if showWarning {
+                    Text(warningMessage)
+                        .foregroundColor(.red)
+                        .padding()
+                }
 
                 if pageIsDisabled {
                     ProgressView("Registering...")
