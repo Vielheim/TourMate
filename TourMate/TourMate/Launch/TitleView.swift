@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TitleView: View {
-    let titleFontSize = 64.0  // TODO: Consider a more dynamic way for font size
+    let titleFontSize = 64.0
     let colorPrimary = Color.blue
     let colorSecondary = Color.teal
 

@@ -107,10 +107,10 @@
 			isa = PBXGroup;
 			children = (
 				0044458B27D9A504000ED3AE /* TextViews */,
+				0044458727D997EF000ED3AE /* TitleView.swift */,
 				000B98A627D7A6DB00E9EBFF /* LaunchView.swift */,
 				0044458327D991C5000ED3AE /* LogInView.swift */,
 				0044458527D991CE000ED3AE /* RegisterView.swift */,
-				0044458727D997EF000ED3AE /* TitleView.swift */,
 			);
 			path = Launch;
 			sourceTree = "<group>";
