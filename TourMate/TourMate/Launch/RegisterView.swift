@@ -8,10 +8,15 @@
 import SwiftUI
 
 struct RegisterView: View {
+    let authenticationController = AuthenticationController()
+
     @State var username = ""
     @State var displayName = ""
     @State var password = ""
     @State var confirmPassword = ""
+    @State var pageIsDisabled = false
+    @State var showWarning = false
+    @State var warningMessage = ""
 
     var registerButtonDisabled: Bool {
         username.isEmpty || password.isEmpty || confirmPassword.isEmpty
@@ -44,6 +49,12 @@ struct RegisterView: View {
 
                     InputSecureField(title: "Confirm Password *", textField: $confirmPassword)
 
+                    if showWarning {
+                        Text(warningMessage)
+                            .foregroundColor(.red)
+                            .padding()
+                    }
+
                     Button(action: onRegisterButtonPressed) {
                         Text("Register")
                         .font(.title2)
@@ -59,6 +70,11 @@ struct RegisterView: View {
                 }
                 .frame(maxWidth: geometry.size.width / 2.0)
 
+                if pageIsDisabled {
+                    ProgressView("Registering...")
+                        .padding()
+                }
+
                 Spacer()
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
@@ -66,7 +82,31 @@ struct RegisterView: View {
     }
 
     private func onRegisterButtonPressed() {
+        guard self.pageIsDisabled == false else {
+            return
+        }
 
+        self.warningMessage = ""
+        self.showWarning = false
+        self.pageIsDisabled = true
+
+        let inputUsername = username
+        let inputDisplayName = displayName
+        let inputPassword = password
+        let inputConfirmPassword = confirmPassword
+
+        guard inputPassword == inputConfirmPassword else {
+            self.warningMessage = "Passwords do not match"
+            self.showWarning = true
+            self.pageIsDisabled = false
+            return
+        }
+
+        authenticationController.register(username: inputUsername,
+                                          password: inputPassword,
+                                          displayName: inputDisplayName)
+
+        self.pageIsDisabled = false
     }
 }
 

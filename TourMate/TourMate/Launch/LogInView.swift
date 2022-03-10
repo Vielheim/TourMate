@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct LogInView: View {
+    let authenticationController = AuthenticationController()
+
     @State var username = ""
     @State var password = ""
+    @State var pageIsDisabled = false
 
     var logInButtonDisabled: Bool {
         username.isEmpty || password.isEmpty
@@ -53,6 +56,11 @@ struct LogInView: View {
                 }
                 .frame(maxWidth: geometry.size.width / 2.0)
 
+                if pageIsDisabled {
+                    ProgressView("Logging In...")
+                        .padding()
+                }
+
                 Spacer()
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
@@ -60,7 +68,17 @@ struct LogInView: View {
     }
 
     private func onLogInButtonPressed() {
+        guard self.pageIsDisabled == false else {
+            return
+        }
 
+        self.pageIsDisabled = true
+        let inputUsername = username
+        let inputPassword = password
+
+        authenticationController.logIn(username: inputUsername, password: inputPassword)
+
+        self.pageIsDisabled = false
     }
 }
 
