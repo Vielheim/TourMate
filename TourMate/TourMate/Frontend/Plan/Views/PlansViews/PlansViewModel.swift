@@ -19,14 +19,22 @@ class PlansViewModel: ObservableObject {
     let tripEndDateTime: DateTime
 
     private var planService: PlanService
-
     private(set) var planEventDelegates: [String: PlanEventDelegate]
+
+    var sortedPlans: [Plan] {
+        plans.sorted { plan1, plan2 in
+            plan1.startDateTime.date < plan2.startDateTime.date
+        }
+    }
 
     // sort and display Plans by Date
     typealias Day = (date: Date, plans: [Plan])
     var days: [Day] {
         let sortedPlans = plans.sorted { plan1, plan2 in
-            plan1.startDateTime.date < plan2.startDateTime.date
+            if plan1.startDateTime.date == plan2.startDateTime.date {
+                return plan1.endDateTime.date < plan2.endDateTime.date
+            }
+            return plan1.startDateTime.date < plan2.startDateTime.date
         }
 
         let plansByDay: [Date: [Plan]] = sortedPlans.reduce(into: [:]) { acc, cur in

@@ -10,6 +10,10 @@ import Foundation
 class Accommodation: Plan {
     var location: Location
 
+    override var locations: [Location] {
+        [ location ]
+    }
+
     init(plan: Plan, location: Location) {
         self.location = location
         super.init(plan: plan)

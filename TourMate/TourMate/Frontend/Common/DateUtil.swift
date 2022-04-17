@@ -12,6 +12,12 @@ final class DateUtil {
 
     static func shortDurationDesc(from startDateTime: DateTime, to endDateTime: DateTime,
                                   on date: Date) -> String {
+        let dayStartDate = date
+        let dayEndDate = Calendar.current.date(byAdding: .day, value: 1, to: date)!
+        if startDateTime.date <= dayStartDate && endDateTime.date >= dayEndDate {
+            return "All day"
+        }
+
         let dateFormatter = DateFormatter()
         dateFormatter.timeStyle = .short
 
@@ -27,6 +33,7 @@ final class DateUtil {
         let endDate = Calendar.current.date(from: DateComponents(year: endDateComponents.year,
                                                                  month: endDateComponents.month,
                                                                  day: endDateComponents.day))!
+
         var start = dateFormatter.string(from: date)
         var end = dateFormatter.string(from: date)
         if startDate == date {
@@ -37,7 +44,6 @@ final class DateUtil {
             dateFormatter.timeZone = endDateTime.timeZone
             end = dateFormatter.string(from: endDateTime.date)
         }
-
         return "\(start) - \(end)"
     }
 

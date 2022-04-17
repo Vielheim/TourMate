@@ -28,6 +28,10 @@ class Plan: CustomStringConvertible {
         id + "-" + String(versionNumber)
     }
 
+    var locations: [Location] {
+        []
+    }
+
     init(plan: Plan) {
         self.id = plan.id
         self.tripId = plan.tripId

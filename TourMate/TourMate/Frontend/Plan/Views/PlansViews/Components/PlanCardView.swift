@@ -16,11 +16,13 @@ struct PlanCardView: View {
 
     let plan: Plan
     let date: Date
+    let displayIndex: Int?
 
-    init(plansViewModel: PlansViewModel, plan: Plan, date: Date) {
+    init(plansViewModel: PlansViewModel, plan: Plan, date: Date, index: Int? = nil) {
         self.plansViewModel = plansViewModel
         self.plan = plan
         self.date = date
+        self.displayIndex = index
 
         let viewModelFactory = ViewModelFactory()
 
@@ -32,7 +34,18 @@ struct PlanCardView: View {
     }
 
     var body: some View {
-        HStack(alignment: .top) {
+        HStack(alignment: .center) {
+            if let index = displayIndex {
+                ZStack {
+                    Image(systemName: "circle.fill")
+                        .font(.title)
+                        .foregroundColor(plan.status == .confirmed ? .green : .red)
+                    Text(String(index))
+                        .foregroundColor(.white)
+                }
+                .padding([.leading])
+            }
+
             VStack(alignment: .leading) {
                 HStack(spacing: 10.0) {
                     Text(DateUtil.shortDurationDesc(from: plan.startDateTime, to: plan.endDateTime, on: date))

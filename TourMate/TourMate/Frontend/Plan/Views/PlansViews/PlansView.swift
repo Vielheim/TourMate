@@ -9,7 +9,7 @@ import SwiftUI
 typealias Day = (date: Date, plans: [Plan])
 
 enum PlansViewMode: String, CaseIterable {
-    case list, calendar
+    case list, calendar, map
 }
 
 struct PlansView: View {
@@ -25,12 +25,21 @@ struct PlansView: View {
 
     var body: some View {
         VStack {
-            Picker("View Mode", selection: $selectedViewMode) {
-                Label("Itinerary", systemImage: "list.bullet.rectangle").tag(PlansViewMode.list)
-                Label("Calendar", systemImage: "calendar.day.timeline.left").tag(PlansViewMode.calendar)
+            HStack {
+                Picker("View Mode", selection: $selectedViewMode) {
+                    Label("Itinerary", systemImage: "list.bullet.rectangle").tag(PlansViewMode.list)
+                    Label("Calendar", systemImage: "calendar.day.timeline.left").tag(PlansViewMode.calendar)
+                }
+                .pickerStyle(.segmented)
+
+                NavigationLink {
+                    PlansMapView(viewModel: plansViewModel, onSelected: onSelected)
+                } label: {
+                    Label("Map", systemImage: "map.fill")
+                }
             }
-            .pickerStyle(.segmented)
             .padding()
+
             Group {
                 if selectedViewMode == .list {
                     PlansListView(viewModel: plansViewModel, onSelected: onSelected)
@@ -41,7 +50,7 @@ struct PlansView: View {
         }
         .task {
             await plansViewModel.fetchPlansAndListen()
-            print("[PlansListView] Fetched plans: \(plansViewModel.plans)")
+            print("[PlansView] Fetched plans: \(plansViewModel.plans)")
         }
         .onDisappear {
             plansViewModel.detachDelegates()

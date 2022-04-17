@@ -11,6 +11,10 @@ class Transport: Plan {
     var startLocation: Location
     var endLocation: Location
 
+    override var locations: [Location] {
+        [ startLocation, endLocation ]
+    }
+
     init(plan: Plan, startLocation: Location, endLocation: Location) {
         self.startLocation = startLocation
         self.endLocation = endLocation
