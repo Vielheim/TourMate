@@ -7,15 +7,6 @@
 
 import SwiftUI
 
-struct IdentifiablePlan: Identifiable, Equatable {
-    static func == (lhs: IdentifiablePlan, rhs: IdentifiablePlan) -> Bool {
-        lhs.id == rhs.id
-    }
-
-    let id: Int
-    let plan: Plan
-}
-
 struct PlansMapView: View {
 
     @State private var selectedDate = Date()
@@ -30,6 +21,21 @@ struct PlansMapView: View {
 
     func getIdentifiablePlans(for date: Date, includingProposedPlans: Bool = false) -> [IdentifiablePlan] {
         var plans = viewModel.days.first { $0.date == date }?.plans ?? []
+
+        plans = plans.filter { plan in
+            if plan.locations.isEmpty {
+                return false
+            }
+
+            for loc in plan.locations {
+                if !loc.isPresent() {
+                    return false
+                }
+            }
+
+            return true
+        }
+
         if !includingProposedPlans {
             plans = plans.filter { $0.status == .confirmed }
         }

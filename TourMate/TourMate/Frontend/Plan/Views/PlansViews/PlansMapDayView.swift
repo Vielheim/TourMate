@@ -8,12 +8,6 @@
 import SwiftUI
 import MapKit
 
-struct IdentifiableLocation: Identifiable {
-    var id: Int
-    var coordinate: CLLocationCoordinate2D
-    var status: PlanStatus
-}
-
 struct PlansMapDayView: View {
     @ObservedObject var viewModel: PlansViewModel
     private let viewModelFactory = ViewModelFactory()
