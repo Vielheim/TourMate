@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PlansCalendarDayView: View {
     @ObservedObject var viewModel: PlansViewModel
+    @State var updater = false
 
     let date: Date
     let plans: [Plan]
@@ -165,6 +166,7 @@ struct PlansCalendarDayView: View {
         plan.endDateTime = DateTime(date: newEndDateTime, timeZone: tripEndDateTime.timeZone)
 
         await editPlanViewModel.updatePlan(plan)
+        updater.toggle()
     }
 
     var body: some View {
