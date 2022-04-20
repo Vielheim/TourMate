@@ -99,31 +99,31 @@ struct PlansCalendarDayView: View {
             let firstPlanIdRect = planIdRect[0]
             planIdToOffset[firstPlanIdRect.planId] = CGSize(width: 0, height: firstPlanIdRect.rect.origin.y)
             minWidth = firstPlanIdRect.rect.width
-        }
 
-        // Calculate and set X, Y offsets to not overlap
-        for i in 1 ..< planIdRect.count {
-            let currentPlanIdRect = planIdRect[i]
-            let currentPlanId = currentPlanIdRect.planId
-            let currentRect = currentPlanIdRect.rect
+            // Calculate and set X, Y offsets to not overlap
+            for i in 1 ..< planIdRect.count {
+                let currentPlanIdRect = planIdRect[i]
+                let currentPlanId = currentPlanIdRect.planId
+                let currentRect = currentPlanIdRect.rect
 
-            for j in 0..<i {
-                let prevPlanIdRect = planIdRect[j]
-                let prevPlanId = prevPlanIdRect.planId
-                let prevRect = prevPlanIdRect.rect
+                for j in 0..<i {
+                    let prevPlanIdRect = planIdRect[j]
+                    let prevPlanId = prevPlanIdRect.planId
+                    let prevRect = prevPlanIdRect.rect
 
-                // If Y position overlaps, offset to the right
-                let prevEndY = prevRect.origin.y + prevRect.size.height
-                let currentStartY = currentRect.origin.y
-                if currentStartY < prevEndY {
-                    var prevEndX = prevRect.origin.x + prevRect.size.width + 6
-                    if let offset = planIdToOffset[prevPlanId] {
-                        prevEndX += offset.width
+                    // If Y position overlaps, offset to the right
+                    let prevEndY = prevRect.origin.y + prevRect.size.height
+                    let currentStartY = currentRect.origin.y
+                    if currentStartY < prevEndY {
+                        var prevEndX = prevRect.origin.x + prevRect.size.width + 6
+                        if let offset = planIdToOffset[prevPlanId] {
+                            prevEndX += offset.width
+                        }
+                        planIdToOffset[currentPlanId] = CGSize(width: prevEndX, height: currentStartY)
+                        minWidth = max(minWidth, prevEndX + currentRect.width)
+                    } else if planIdToOffset[currentPlanId] == nil {
+                        planIdToOffset[currentPlanId] = CGSize(width: 0, height: currentStartY)
                     }
-                    planIdToOffset[currentPlanId] = CGSize(width: prevEndX, height: currentStartY)
-                    minWidth = max(minWidth, prevEndX + currentRect.width)
-                } else if planIdToOffset[currentPlanId] == nil {
-                    planIdToOffset[currentPlanId] = CGSize(width: 0, height: currentStartY)
                 }
             }
         }
@@ -202,8 +202,11 @@ struct PlansCalendarDayView: View {
                                                         draggingPlanId = plan.id
                                                     }
                                                     .onEnded { gesture in
-                                                        Task { await handlePlanDragEnded(plan: plan, offset: Float(gesture.translation.height)) }
-                                                        draggingPlanId = ""
+                                                        Task {
+                                                            await handlePlanDragEnded(plan: plan, offset: Float(gesture.translation.height))
+                                                            draggingPlanId = ""
+                                                            calculateOffsets()
+                                                        }
                                                     }
                                             )
                                             .frame(maxWidth: UIScreen.screenWidth / 3,
